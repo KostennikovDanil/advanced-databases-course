@@ -1,0 +1,11 @@
+infrastructure/clickhouse/data/
+infrastructure/clickhouse/data/**
+infrastructure/clickhouse/data/*
+**/infrastructure/data/
+**/data/**
+
+**/prometheus_data/
+**/grafana_data/
+
+*.log
+.DS_Store

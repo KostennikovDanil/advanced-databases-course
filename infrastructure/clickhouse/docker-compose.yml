@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.1
+    container_name: clickhouse-dev
+    ports:
+      - "8124:8123"
+      - "9001:9000"
+      - "9364:9363"
+    volumes:
+      - ./data:/var/lib/clickhouse
+      - ./init-scripts:/docker-entrypoint-initdb.d
+      - ./configs/prometheus.xml:/etc/clickhouse-server/config.d/prometheus.xml
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    networks: [ch_net]
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: ch-prometheus
+    ports:
+      - "9091:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks: [ch_net]
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: ch-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    networks: [ch_net]
+
+networks:
+  ch_net:
+    driver: bridge
