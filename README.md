@@ -5,7 +5,7 @@
 
 Билд
 ```
-cd clickhouse
+cd infrastructure/clickhouse
 docker compose build
 docker compose up -d
 ```
