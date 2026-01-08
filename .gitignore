@@ -3,6 +3,12 @@ infrastructure/clickhouse/data/**
 infrastructure/clickhouse/data/*
 **/infrastructure/data/
 **/data/**
+mongo-data/
+infrastructure/clickhouse/mongodb_data/
+infrastructure/clickhouse/mongodb_data/*
+infrastructure/clickhouse/mongodb_data/**
+**/mongo-data/е
+infrastructure/clickhouse/mongo-data/
 
 **/prometheus_data/
 **/grafana_data/

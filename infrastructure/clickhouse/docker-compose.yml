@@ -37,6 +37,26 @@ services:
       GF_SECURITY_ADMIN_PASSWORD: admin
     networks: [ch_net]
 
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb-dev
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-data:/data/db
+    networks: [ch_net]
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - "8085:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    networks: [ch_net]
+
+
 networks:
   ch_net:
     driver: bridge
